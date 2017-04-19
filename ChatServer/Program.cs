@@ -12,13 +12,13 @@ namespace ChatServer
         {
             
         }
-        static void startServer()
-        {
-
-        }
-        static void stopServer()
-        {
-
-        }
+        /*
+        static void startServer(){}    
+        static void stopServer(){}
+        static void login(string username, string password){}       
+        static List<Message> getUnreadMessage(string clientID, time lastMessage){}       
+        static void sentMessage(Message message){}
+        static Message getMessage(){}
+        */
     }
 }
