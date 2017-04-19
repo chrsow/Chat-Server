@@ -10,8 +10,15 @@ namespace ChatServer
     {
         static void Main(string[] args)
         {
-            Console.Out.WriteLine("hello");
-            Console.ReadLine();
+            
+        }
+        static void startServer()
+        {
+
+        }
+        static void stopServer()
+        {
+
         }
     }
 }
