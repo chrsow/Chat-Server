@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Net;
@@ -15,22 +13,13 @@ namespace ChatServer
         private static TcpClient clientSocket;
         static void Main(string[] args)
         {
-            ip = IPAddress.parse("192.168.0.1");
+            ip = IPAddress.Parse("192.168.0.2");
             serverSocket = new  TcpListener(ip,8088);
             clientSocket = default(TcpClient);
-            showCommandConsole();
-        }
-        static void startServer()
-        {
-            Console.WriteLine("Starting Server...");                                 
-        }
-        static void stopServer()
-        {
-            Console.WriteLine("Stopping Server...");
-        }
-        static void showCommandConsole()
-        {
+            while(true)
+            {
             string command;
+            Console.WriteLine("\n------------------------------------------------");
             Console.WriteLine("Chat Server console.\n\nPlease type command.\n");
             Console.WriteLine("\t[start]\tStart Chat Server\n\t[stop]\tStop Chat Server");
             Console.Write("\nCommand >> ");
@@ -41,11 +30,32 @@ namespace ChatServer
                     break;
                     case "stop" : stopServer();
                     break;
+                    case "exit" : System.Environment.Exit(0);
+                    break;
                     default : Console.Out.WriteLine("Invalid command");
                     break;
                 }
-            Console.ReadLine();
+            }
         }
-        
+        static void startServer()
+        {
+            Console.WriteLine("Starting Server...");   
+            try
+            {
+                serverSocket.Start();
+            }
+            catch(Exception e)
+            {
+                Console.WriteLine(e.StackTrace);
+            }
+        }
+        static void stopServer()
+        {
+            Console.WriteLine("Stopping Server...");
+            serverSocket.Stop();
+            clientSocket.Close();
+            Console.WriteLine("Server stopped.");
+        }
+
     }
 }
