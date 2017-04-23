@@ -66,6 +66,10 @@ namespace ChatServer
             }
             
         }
+        static void broadcast()
+        {
+
+        }
 
     }
 }
