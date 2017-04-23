@@ -13,7 +13,7 @@ namespace ChatServer
         private static TcpClient clientSocket;
         static void Main(string[] args)
         {
-            ip = IPAddress.Parse("192.168.0.2");
+            ip = IPAddress.Parse("192.168.1.37");
             serverSocket = new  TcpListener(ip,8088);
             clientSocket = default(TcpClient);
             while(true)
@@ -43,18 +43,28 @@ namespace ChatServer
             try
             {
                 serverSocket.Start();
+                Console.WriteLine("Server Started.");
             }
             catch(Exception e)
             {
                 Console.WriteLine(e.StackTrace);
+                Console.WriteLine("Server Starting failed.");
             }
         }
         static void stopServer()
         {
             Console.WriteLine("Stopping Server...");
-            serverSocket.Stop();
-            clientSocket.Close();
-            Console.WriteLine("Server stopped.");
+            try{
+                serverSocket.Stop();
+                clientSocket.Close();
+                Console.WriteLine("Server stopped.");
+            }
+            catch(Exception e)
+            {
+                Console.WriteLine(e.StackTrace);
+                Console.WriteLine("Server Stopping failed.");
+            }
+            
         }
 
     }
