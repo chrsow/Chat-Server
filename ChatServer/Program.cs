@@ -10,10 +10,14 @@ namespace ChatServer
 {
     class Program
     {
-        private IPAddress ip;
-        private TcpListener tcpList;
+        private static IPAddress ip;
+        private static TcpListener serverSocket;
+        private static TcpClient clientSocket;
         static void Main(string[] args)
         {
+            ip = IPAddress.parse("192.168.0.1");
+            serverSocket = new  TcpListener(ip,8088);
+            clientSocket = default(TcpClient);
             showCommandConsole();
         }
         static void startServer()
