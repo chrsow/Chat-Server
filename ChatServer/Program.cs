@@ -1,10 +1,9 @@
 ﻿using System;
-using System.Collections;
-using System.Linq;
-using System.Net.Sockets;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Net;
+using System.Net.Sockets;
 
 namespace ChatServer
 {
@@ -124,11 +123,37 @@ namespace ChatServer
 
         static void startServer()
         {
-
+            Console.WriteLine("Starting Server...");   
+            try
+            {
+                serverSocket.Start();
+                Console.WriteLine("Server Started.");
+            }
+            catch(Exception e)
+            {
+                Console.WriteLine(e.StackTrace);
+                Console.WriteLine("Server Starting failed.");
+            }
         }
         static void stopServer()
         {
+            Console.WriteLine("Stopping Server...");
+            try{
+                serverSocket.Stop();
+                clientSocket.Close();
+                Console.WriteLine("Server stopped.");
+            }
+            catch(Exception e)
+            {
+                Console.WriteLine(e.StackTrace);
+                Console.WriteLine("Server Stopping failed.");
+            }
+            
+        }
+        static void broadcast()
+        {
 
         }
+
     }
 }
